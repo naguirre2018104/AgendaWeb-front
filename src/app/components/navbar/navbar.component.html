@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="">Diary Web</a>
+      <!-- Se quitan los que tiene "bs" para evitar el choque entre versiones -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="token == null" routerLink="/home" routerLinkActivate="active">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="token == null" routerLink="/register" routerLinkActivate="active">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="token == null" routerLink="/login" routerLinkActivate="active">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="token != null" routerLink="/saveContact" routerLinkActivate="active">Save Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="token != null" routerLink="/homeContacts" routerLinkActivate="active">My Contacts</a>
+          </li>
+          <li class="nav-item dropdown" *ngIf="token != null || token != undefined">
+              <!-- Se quita lo que tiene "bs" para evitar el choque entre versiones -->
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+              More Options
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" routerLink="/user">Account Settings</a></li>
+              <li *ngIf="user.role == 'ROLE_ADMIN'"><hr class="dropdown-divider"></li>
+              <li *ngIf="user.role == 'ROLE_ADMIN'"><a class="dropdown-item" routerLink="/saveUser">New User</a></li>
+              <li *ngIf="user.role == 'ROLE_ADMIN'"><a class="dropdown-item" routerLink="/listUsers">List Users</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" (click)="logOut()">Log out</a></li>
+            </ul>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li> -->
+        </ul>
+        <ul *ngIf="token != null" class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link ">{{ user.username }}</a>
+          </li>
+          <li>
+            <img *ngIf="user.image" id="userImage" src="{{ uri+'getImage/'+user.image }}" alt="User image">
+            <img *ngIf="!user.image" id="userImage" src="../../../assets/img/logo.png" alt="User image">
+          </li>
+        </ul>
+        <!-- <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form> -->
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,15 @@
+<h1>{{ title }}</h1>
+
+<input type="text" [(ngModel)]="nombre"> <!-- (keyup)="capturarNombre()" sirve para realizar algo por cada tecla o cambio -->
+<input type="text" [(ngModel)]="apellido">
+<input type="number" [(ngModel)]="edad">
+
+<div *ngIf="infoHijo">
+    <p>Nombre del hijo: {{ infoHijo.nombre }}</p>
+    <p>Apellido del hijo: {{ infoHijo.apellido }}</p>
+    <p>Edad del hijo: {{ infoHijo.edad }}</p>
+</div>
+
+<hr>
+<app-hijo [nombrePadre]="nombre" [apellidoPadre]="apellido" [edadPadre]="edad" (enviarDatos)="obtenerDatos($event)"></app-hijo>
+<!-- El (enviarDatos) hace referencia al objeto creado o instanciado en la clase hijo -->

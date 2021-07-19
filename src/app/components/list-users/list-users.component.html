@@ -1,0 +1,16 @@
+<div id="cards">
+    <h1 class="text-center">All Users</h1>
+    <hr>
+    <form action="" class="form-inline justify-content-center">
+        <div class="form-group">
+            <input [(ngModel)]="search" type="search" name="search" class="form-control-lg" placeholder="Search by username">
+        </div>
+    </form>
+    <div class="card cardWidth" style="width: 18rem;" *ngFor="let user of users | search:search">
+        <div class="card-body text-white bg-primary">
+        <h5 class="card-title text-center">{{ user.name }} | {{ user.username }}</h5>
+        <h6 class="card-subtitle">{{ user.email }}</h6>
+        <p class="card-text">{{ user.role }}</p>
+        </div>
+    </div>
+</div>

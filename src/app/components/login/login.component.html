@@ -1,0 +1,31 @@
+
+<body class="text-center" [@fadeIn]>
+    <form class="form-signin" #login="ngForm" (ngSubmit)="onSubmit()">
+        <div *ngIf="message" class="alert alert-primary" role="alert">
+            ¡{{ message }}!
+            <!-- Si no tienes una cuenta, regístrate <a routerLink="/register">Register</a> -->
+        </div>
+
+        <img class="mb-4" width="78" height="78" src="../../../assets/img/logo.png" alt="Logo de agenda">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input [(ngModel)]="user.username" name="username" #username="ngModel" class="form-control" id="inputUsername" type="text" placeholder="Enter username" required>
+        <span *ngIf="!username.valid && username.touched">
+            Required
+        </span>
+        <label for="inputPassword" class="sr-only">Username</label>
+        <input [(ngModel)]="user.password" name="password" #password="ngModel" class="form-control" id="inputPassword" type="password" placeholder="Enter password" required>
+        <span *ngIf="!password.valid && password.touched">
+            Required
+        </span>
+        <br>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!login.form.valid">Sign in</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+    </form>
+</body>

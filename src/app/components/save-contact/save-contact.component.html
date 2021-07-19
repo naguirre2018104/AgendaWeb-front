@@ -1,0 +1,33 @@
+<br>
+<h1 class="text-center">Create contact</h1>
+<hr>
+<div *ngIf="message != ''" class="alert alert-primary" role="alert">
+    {{ message }}!
+    <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+    
+        <!-- Icon -->
+        <br>
+        <div class="fadeIn first">
+            <img src="../../../assets/img/logo.png" id="icon" alt="User Icon" />
+        </div>
+    
+        <!-- Login Form -->
+        <form (ngSubmit)="onSubmit(saveContact)" #saveContact="ngForm">
+            <input [(ngModel)]="contact.name" type="text" id="name" class="fadeIn second" name="name" placeholder="Contact name" required>
+            <input [(ngModel)]="contact.lastname" type="text" id="lastname" class="fadeIn third" name="lastname" placeholder="Contact lastname" required>
+            <input [(ngModel)]="contact.phone" type="number" id="phone" class="fadeIn third" name="phone" placeholder="Contact phone" required>
+            <input type="submit" class="fadeIn fourth" value="Save Contact" [disabled]="!saveContact.form.valid">
+        </form>
+    
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            <a class="underlineHover" routerLink="/user">Your account</a>
+        </div>
+    </div>
+</div>
